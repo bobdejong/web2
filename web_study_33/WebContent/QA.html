@@ -1,7 +1,9 @@
 05_forwardTest.jsp에서 request.setAttribute("name","홍길동"); //object타입으로 보내는거라
 05_forwardresult에서 String name=(String)request.getAttribute("name"); //object타일이라 형변환해주어야함
 
+12_application_hwang에서 application은 서버가 꺼질때까지 값이 남아있어서 새로고침하면 +1이 계속 추가됨
+request는 한번응답하면 사라짐 session은 브라우저가 꺼지면 사라짐
 
 15_actionTagTest.jsp에서
 <jsp:param value='<%=URLEncoder.encode("전고객","UTF-8") %>' name="userName"/>
-value는 작은 따옴표써줘야 에러안남
+value는 작은 따옴표써줘야 에러안남 안에 큰따옴표가 쓰이기 때문에 html에서는 따옴표 두개 쓰려면 큰따옴표와 작은따옴표 섞어 써줘야함

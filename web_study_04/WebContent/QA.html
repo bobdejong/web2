@@ -3,4 +3,91 @@
 05_testLogin.jsp에서 URLEncoder.encode(name,"UTF-8")로 보내면 
 05_ex_main에서 str=URLDecoder.decode(c.getValue(),"UTF-8")로 받아야 한글로 제대로 나옴
 
-session은 object를 반환
+session은name은 String타입 value는 object를 반환
+<%= %>=익스프레션
+
+07_setSession에서 session.setAttribute("pwd", "test1234");
+				session.setAttribute("age", 20); int형으로 받으려면 따옴표 없이 써줘야함
+				
+08_getSession 
+			String value=(String)session.getAttribute(name) 26이 인트타입이라 안됨
+			String value=(String)session.getAttribute(name).toString();
+
+----toString()------------------------ 
+
+print(), println() 메소드의 인수가 개체가 오면 자동으로 객체. toString() 메소드가 호출된다. Object에 정의된 toString()메소드는 주소값을 리턴 Object의 toString()을 재정의한 String에 있는 toString()메소드는 String의 문자열을 리턴한다. */
+Object 클래스 변수를 출력하면 주소값이 출력되지만 String 클래스의 변수를 출력하면 값이 출력됨
+
+Object 객체의------------------------------------
+
+public String toString()
+Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method.
+The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:
+
+getClass().getName() + '@' + Integer.toHexString(hashCode())
+Returns:
+a string representation of the object.
+
+String 객체의-------------------------------------
+
+toString
+public String toString()
+This object (which is already a string!) is itself returned.
+Specified by:
+toString in interface CharSequence
+Overrides:
+toString in class Object
+Returns:
+the string itself.
+[출처] 자바 - toString() 메소드 오버라이드 (Override;재정의;새롭게(new) 정의)|작성자 자바킹
+https://javaking75.blog.me/140157770558
+---------------------------------------------
+https://blog.naver.com/gngh0101/221115783851
+
+자바에서 가장 많이? 사용되는 toString()이다. 
+기초지만, 아마도 잘 모를 것이다.  
+객체의 래퍼런스를 출력하려고하면 자동적으로 toString 메소드를 사용하게 된다. 
+
+: 객체가 가진 정보를 문자열로 반환하는 메소드이다. 
+
+여기서 말하는 정보란 여러가지 될 수 있다. 
+왜냐면 toString메소드는 
+자바의 최상위 객체 Object의 메소드로, 
+자바의 모든 객체는 toString을 가지게 된다. 
+때에 따라서 override (오버라이드) 하는 경우가 있기에 정보는 Custom하기 나름이다.
+
+/**
+
+ * 
+
+ * @author hoTire
+
+ *
+
+
+ */
+
+일단 먼저 Object의 toString을 까보자. !
+
+public String toString() {
+return getClass().getName() + "@" + Integer.toHexString(hashCode());
+}
+// java.lang.Object@1540e19d
+
+class의 이름 + @ + hashCode(객체의 고유 값) 리턴한다. (다음에 hashCode를 좀더 알아보자 )
+
+
+
+오버라이드의 가장 대표적인 예 String의 toString을 봐보자. 
+ public String toString() {
+      return this;
+ }
+
+this return하게 되면 자신의 참조값을 전달한다. 
+String의 참조값은 문자열(value) 이므로, 문자열(value)이 나오게 된다. 
+
+-------------------------------------------------------------------
+ex1_loginOK <%! String id,pw;%> <!-- 전역변수 선언 -->
+<%! 
+
+			
