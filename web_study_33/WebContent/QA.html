@@ -1,0 +1,7 @@
+05_forwardTest.jsp에서 request.setAttribute("name","홍길동"); //object타입으로 보내는거라
+05_forwardresult에서 String name=(String)request.getAttribute("name"); //object타일이라 형변환해주어야함
+
+
+15_actionTagTest.jsp에서
+<jsp:param value='<%=URLEncoder.encode("전고객","UTF-8") %>' name="userName"/>
+value는 작은 따옴표써줘야 에러안남
