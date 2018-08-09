@@ -45,7 +45,7 @@
 	</form>
 	<hr>
 	<div align="center">
-	<a href="#">목록 보기</a>
+	<a href="07_addr_list.jsp">목록 보기</a>
 </div>
 </body>
 </html>
