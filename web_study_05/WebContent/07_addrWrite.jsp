@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.mission.javabeans.AddrManager"%>
   <%request.setCharacterEncoding("UTF-8"); %>
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,12 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	com.mission.javabeans.AddrBean ss=new com.mission.javabeans.AddrBean(); 
-	%>
 	
-	<jsp:useBean id="addr" class="com.mission.javabeans.AddrBean"></jsp:useBean>
+	
+    <jsp:useBean id="addr" class="com.mission.javabeans.AddrBean"></jsp:useBean>
 	<jsp:setProperty property="*" name="addr"/>
+	<jsp:useBean id="am" class="com.mission.javabeans.AddrManager" scope="application"></jsp:useBean>
+	
+	<%
+		am.add(addr);
+	%>
 	
 	
 	<h1 align="center">등록내용</h1>
