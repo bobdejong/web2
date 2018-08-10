@@ -3,3 +3,7 @@
 <%request.setCharacterEncoding("UTF-8"); %>를 명시해줘야함
 
 자바빈---https://blog.naver.com/jsky10503/221143721801
+
+07_addrWrite와 07_addr_list에서
+<jsp:useBean id="am" class="com.mission.javabeans.AddrManager" scope="application"></jsp:useBean>
+scope="application"을 써줘야 서버가 꺼질때 까지 값이 저장되어었음
