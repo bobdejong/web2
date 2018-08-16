@@ -1,4 +1,71 @@
-11_additon 서블릿에서 실행해야함
+<!-- 11_additon 서블릿에서 실행해야함
 
 MemberBean.java super()는 호출안해줘도 자동으로 호출
 오브젝트 객체가 만들어져야 하기때문에
+
+17_colorSelect.jsp
+==과 equals연산
+
+-----------------------자바코드----------------------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>자바코드로 == 과 equals의 비교</h2>
+<h3>==연산자의 사용 결과</h3>
+<%=request.getParameter("id") == "Cho" %><br>
+<h3>equals() 사용 결과</h3>
+<%=request.getParameter("id").equals("Cho") %><br>
+</body>
+</html>
+------------------------------------------------------
+자바코드로 ==과 equals의 비교
+==연산자의 사용 결과
+false
+
+equals() 사용 결과
+true
+
+---------------------EL표현식----------------------------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>EL식 ${param} 코드로 == 과 equals의 비교</h2>
+<h3>==연산자의 사용 결과</h3>
+${param.id=="Cho"}<br>
+</body>
+</html>
+----------------------------------------------------------------
+
+EL식 {id=Cho} 코드로 == 과 equals의 비교
+==연산자의 사용 결과
+true
+
+EL식에서의 ==연산자는 자바코드의 equals와 동일하게 쓰일수 있음
+
+
+
+출처: http://iotsw.tistory.com/category/JSP?page=1 [IOT기반 SW]
+
+JSTL 코어태그 정리 -- http://gangzzang.tistory.com/114
+
+
+
+
+
+
+
+
+
+ -->
