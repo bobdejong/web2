@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class logInOk
@@ -54,60 +55,48 @@ public class logInOk extends HttpServlet {
 			
 	}
 	private void actionDo(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
-			String id=request.getParameter("id");
-			String pw=request.getParameter("pw");
+		id = request.getParameter("id");
+		pw = request.getParameter("pw");
 		
-			String query="select * from memeber2 where id='"+id+"' and pw='"+pw+"'";
+		String query = "select * from member2 where id = '" + id + "' and pw = '" + pw + "'";
 			
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
-				connection=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
-				stmt=connection.createStatement();
-				resultSet=stmt.executeQuery(query);
-				
-				while(resultSet.next()) {
-					name=resultSet.getString("name");
-					id=resultSet.getString("id");
-					pw=resultSet.getString("pw");
-					phone1=resultSet.getString("phone1");
-					phone2=resultSet.getString("phone2");
-					phone3=resultSet.getString("phone3");
-					gender=resultSet.getString("gender");
-					
-					
+				connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe" , "scott" , "tiger");
+				stmt = connection.createStatement();
+				resultSet =  stmt.executeQuery(query);
+
+				while (resultSet.next()) {
+					name = resultSet.getString("name");
+					id = resultSet.getString("id");
+					pw = resultSet.getString("pw");
+					phone1 = resultSet.getString("phone1");
+					phone2 = resultSet.getString("phone2");
+					phone3 = resultSet.getString("phone3");
+					gender = resultSet.getString("gender");
 				}
 				
+				HttpSession httpSession = request.getSession();
+				httpSession.setAttribute("name", name);
+				httpSession.setAttribute("id", id);
+				httpSession.setAttribute("pw", pw);
 				
-			}catch(Exception e) {
+				response.sendRedirect("loginResult.jsp");
+				
+			} catch (Exception e) {
 				e.printStackTrace();
-			}finally {
+			} finally {
 				try {
-					if(stmt != null)
-						stmt.close();
-					if(connection != null)
-						connection.close();
-				}catch(Exception e) {
-					e.printStackTrace();
+					if(resultSet != null) resultSet.close();
+					if(stmt != null) stmt.close();
+					if(connection != null) connection.close();
+				} catch (Exception e2) {
+				e2.printStackTrace();
 				}
 			}
-			
-	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
+			
+		}
+
+
+	}

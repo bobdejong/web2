@@ -28,5 +28,6 @@
 			<input type="submit" value="회원가입">
 			<input type="reset" value="취소">
 </form>
+<%=session.getAttribute("name") %>
 </body>
 </html>

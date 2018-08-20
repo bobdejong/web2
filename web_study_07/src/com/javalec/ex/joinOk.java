@@ -25,7 +25,7 @@ public class joinOk extends HttpServlet {
 	private Connection connection;
 	private Statement stmt;
 	
-	private String name,id,phone1,phone2,phone3,gender,pw;
+	private String name, id, pw, phone1, phone2, phone3, gender;
 	
     public joinOk() {
         super();
@@ -68,7 +68,7 @@ public class joinOk extends HttpServlet {
 		phone3=request.getParameter("phone3");
 		gender=request.getParameter("gender");
 		
-		String query="insert into member2 values('"+name+"', '"+id+"', '"+pw+"', '"+phone1+"', '"+phone2+"', '"+phone3+"', '"+gender+"')";
+		String query = "insert into member2 values('" + name + "', '" + id + "', '" + pw + "', '" + phone1 + "', '" + phone2 + "', '"+ phone3 + "', '" + gender + "')";
 		
 		
 		try {
@@ -94,7 +94,7 @@ public class joinOk extends HttpServlet {
 				if(connection != null)
 					connection.close();
 			}catch(Exception e) {
-				e.printStackTrace();
+				
 			}
 		}
 		

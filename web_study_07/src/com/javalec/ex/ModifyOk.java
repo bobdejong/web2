@@ -1,0 +1,131 @@
+package com.javalec.ex;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * 
+ * Servlet implementation class ModifyOk
+ * 
+ */
+
+@WebServlet("/ModifyOk")
+
+public class ModifyOk extends HttpServlet {
+	//private static final long serialVersionUID = 1L;
+	private Connection connection;
+	private Statement stmt;
+	private String name, id, pw, phone1, phone2, phone3, gender;
+	HttpSession httpSession;
+	/**
+	 * 
+	 * @see HttpServlet#HttpServlet()
+	 * 
+	 */
+
+	public ModifyOk() {
+		super();
+		// TODO Auto-generated constructor stub
+
+	}
+
+	/**
+	 * 
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 * 
+	 */
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		actionDo(request, response);
+
+	}
+
+	/**
+	 * 
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 * 
+	 */
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		actionDo(request, response);
+
+	}
+
+	private void actionDo(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+		httpSession = request.getSession();
+		name = request.getParameter("name");
+		id = request.getParameter("id");
+		pw = request.getParameter("pw");
+		phone1 = request.getParameter("phone1");
+		phone2 = request.getParameter("phone2");
+		phone3 = request.getParameter("phone3");
+		gender = request.getParameter("gender");
+
+		if (pwConfirm()) {
+			System.out.println("OK");
+			String query = "update member2 set name ='" + name + "', phone1= '" + phone1 + "', phone2 = '" + phone2
+					+ "', phone3 = '" + phone3 + "', gender = '" + gender + "'";
+
+			System.out.println(query);
+
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
+				stmt = connection.createStatement();
+				int i = stmt.executeUpdate(query);
+
+				if (i == 1) {
+					System.out.println("update success");
+					httpSession.setAttribute("name", name);// 이름이 수정될수 있으므로
+					response.sendRedirect("modifyResult.jsp"); // 수정완료되었다는 페이지로 이동
+
+				} else {
+
+					System.out.println("update fail");
+					response.sendRedirect("modify.jsp");// id, pw가 일치하지 않으면 다시 수정페이지로 이동
+
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (stmt != null)
+						stmt.close();
+					if (connection != null)
+						connection.close();
+				} catch (Exception e) {
+				}
+			}
+		} else {
+			System.out.println("NG"); // id,pw가 일치하지 않으면 ng
+		}
+	}
+	private boolean pwConfirm() {
+		boolean rs = false;
+		String sessionPw =  (String)httpSession.getAttribute("pw"); // 사용자가 입력한 pw하고 db에 있는 pw가 일치하는지 확인	
+		if(sessionPw.equals(pw)) {
+			rs = true;  ///id, pw가 일치하는지 확인한다. 맞으면 DB에서 업데이트해서 진행
+		} else {
+			rs = false;// ng메세지를 발생한다. redirect해서 적당한 페이지로 보낸다.
+		}		
+		return rs;
+	}
+
+}
