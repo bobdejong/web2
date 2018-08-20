@@ -80,7 +80,7 @@ public class ModifyOk extends HttpServlet {
 		if (pwConfirm()) {
 			System.out.println("OK");
 			String query = "update member2 set name ='" + name + "', phone1= '" + phone1 + "', phone2 = '" + phone2
-					+ "', phone3 = '" + phone3 + "', gender = '" + gender + "'";
+					+ "', phone3 = '" + phone3 + "', gender = '" + gender + "' where name='"+name+"'";
 
 			System.out.println(query);
 
