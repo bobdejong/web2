@@ -55,8 +55,6 @@ public class logInOk extends HttpServlet {
 			
 	}
 	private void actionDo(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
-		request.setCharacterEncoding("UTF-8");
-		
 		id = request.getParameter("id");
 		pw = request.getParameter("pw");
 		
@@ -68,22 +66,40 @@ public class logInOk extends HttpServlet {
 				stmt = connection.createStatement();
 				resultSet =  stmt.executeQuery(query);
 
-				while (resultSet.next()) {
-					name = resultSet.getString("name");
-					id = resultSet.getString("id");
-					pw = resultSet.getString("pw");
-					phone1 = resultSet.getString("phone1");
-					phone2 = resultSet.getString("phone2");
-					phone3 = resultSet.getString("phone3");
-					gender = resultSet.getString("gender");
-				}
 				
+				
+				//if(resultSet.next()) 
+				while (resultSet.next()){
+					if(pw.equals(resultSet.getString("pw"))) {
+				System.out.println(name);	
+				
+						 
+							name = resultSet.getString("name");
+							id = resultSet.getString("id");
+							pw = resultSet.getString("pw");
+							phone1 = resultSet.getString("phone1");
+							phone2 = resultSet.getString("phone2");
+							phone3 = resultSet.getString("phone3");
+							gender = resultSet.getString("gender");
+						
+						
+						
 				HttpSession httpSession = request.getSession();
 				httpSession.setAttribute("name", name);
 				httpSession.setAttribute("id", id);
 				httpSession.setAttribute("pw", pw);
 				
+				
+				
 				response.sendRedirect("loginResult.jsp");
+					
+					
+				}else
+				response.sendRedirect("login.html");
+			}
+				response.sendRedirect("login.html");
+				
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();

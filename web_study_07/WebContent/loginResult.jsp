@@ -19,7 +19,8 @@
 	
 	%>
 	
-	이름:<%=name %>
+	이름:<%=name %><br>
+	아이디:<%=id %><br>
 	<a href="modify.jsp">회원정보 수정</a>
 
 </body>
