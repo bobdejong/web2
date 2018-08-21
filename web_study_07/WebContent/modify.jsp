@@ -2,8 +2,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <%!Connection connection;
 	Statement statement;
@@ -18,15 +18,17 @@
 <body>
 
 	<%
-		id = (String) session.getAttribute("id");//·Î±×¾Æ¿ôÇÏÁö ¾Ê¾ÒÀ¸¹Ç·Î ¼¼¼ÇÀ¸·ÎºÎÅÍ id°ªÀ» °¡Á®¿Â´Ù.
-		String query = "select * from member2 where id = '" + id + "'";//´Ü id°¡ °°Àº°Í¸¸
+	
+		id = (String) session.getAttribute("id");//ë¡œê·¸ì•„ì›ƒí•˜ì§€ ì•Šì•˜ìœ¼ë¯€ë¡œ ì„¸ì…˜ìœ¼ë¡œë¶€í„° idê°’ì„ ê°€ì ¸ì˜¨ë‹¤.
+		String query = "select * from member2 where id = '" + id + "'";//ë‹¨ idê°€ ê°™ì€ê²ƒë§Œ
    		Class.forName("oracle.jdbc.driver.OracleDriver");
    		connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe" , "scott" , "tiger");
 		statement = connection.createStatement();
 		resultSet = statement.executeQuery(query);
 		while (resultSet.next()) {
+			request.setCharacterEncoding("UTF-8");
 			name = resultSet.getString("name");
-			pw = resultSet.getString("pw");
+			pw = resultSet.getString("pw");			
 			phone1 = resultSet.getString("phone1");
 			phone2 = resultSet.getString("phone2");
 			phone3 = resultSet.getString("phone3");
@@ -37,10 +39,10 @@
 
 
 	<form action="ModifyOk" method="post">
-		ÀÌ¸§ : <input type="text" name="name" size="10" value=<%=name%>><br />
-		¾ÆÀÌµð :
-		<%=id%><br />ºñ¹Ð¹øÈ£ : <input type="text" name="pw" size="10"><br />
-		ÀüÈ­¹øÈ£ : <select name="phone1">
+		ì´ë¦„ : <input type="text" name="name" size="10" value=<%=name%>><br />
+		ì•„ì´ë”” :
+		<%=id%><br />ë¹„ë°€ë²ˆí˜¸ : <input type="text" name="pw" size="10"><br />
+		ì „í™”ë²ˆí˜¸ : <select name="phone1">
 			<option value="010">010</option>
 			<option value="016">016</option>
 			<option value="017">017</option>
@@ -55,23 +57,23 @@
 			if (gender.equals("man")) {
 		%>
 
-		¼ºº°±¸ºÐ : <input type="radio" name="gender" value="man" checked="checked">³²
-		&nbsp;<input type="radio" name="gender" value="woman">¿© <br />
+		ì„±ë³„êµ¬ë¶„ : <input type="radio" name="gender" value="man" checked="checked">ë‚¨
+		&nbsp;<input type="radio" name="gender" value="woman">ì—¬ <br />
 
 		<%
 			} else {
 		%>
 
-		¼ºº°±¸ºÐ : <input type="radio" name="gender" value="man">³² &nbsp;<input
-			type="radio" name="gender" value="woman" checked="checked">¿©
+		ì„±ë³„êµ¬ë¶„ : <input type="radio" name="gender" value="man">ë‚¨ &nbsp;<input
+			type="radio" name="gender" value="woman" checked="checked">ì—¬
 		<br />
 
 		<%
 			}
 		%>
 
-		<input type="submit" value="Á¤º¸¼öÁ¤"> <input type="reset"
-			value="Ãë¼Ò">
+		<input type="submit" value="ì •ë³´ìˆ˜ì •"> <input type="reset"
+			value="ì·¨ì†Œ">
 
 	</form>
 

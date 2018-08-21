@@ -70,6 +70,7 @@ public class joinOk extends HttpServlet {
 		
 		String query = "insert into member2 values('" + name + "', '" + id + "', '" + pw + "', '" + phone1 + "', '" + phone2 + "', '"+ phone3 + "', '" + gender + "')";
 		
+		System.out.println(query);
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

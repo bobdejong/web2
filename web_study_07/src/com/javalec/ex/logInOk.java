@@ -55,6 +55,8 @@ public class logInOk extends HttpServlet {
 			
 	}
 	private void actionDo(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+		request.setCharacterEncoding("UTF-8");
+		
 		id = request.getParameter("id");
 		pw = request.getParameter("pw");
 		

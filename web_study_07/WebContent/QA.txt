@@ -1,0 +1,17 @@
+서블릿에서 ModifyOk.java는 httpSession = request.getSession();
+웹컨텐츠 modify.jsp에서는 id = (String) session.getAttribute("id");
+
+--- HttpSession---
+=>접속한 웹 브라우저 하나에 대한 정보를 저장할 수 있는 객체
+=>서버에 저장
+=>jsp에서는 session이라는 이름으로 바로 사용하면 되고
+servlet에서는 request.getSession()을 호출해서 받아와서 
+사용해야 한다.
+
+https://blog.naver.com/ghddid13/221121222032
+
+-----------------------------------------------
+
+ModifyOk
+line 95 int i = stmt.executeUpdate(query);
+executeUpdate(쿼리문)메서드는 실행 후 성공한 레코드수를 반환한다

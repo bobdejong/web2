@@ -66,22 +66,26 @@ public class ModifyOk extends HttpServlet {
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		
 		request.setCharacterEncoding("UTF-8");
 		httpSession = request.getSession();
-		name = request.getParameter("name");
-		id = request.getParameter("id");
+		id = (String) httpSession.getAttribute("id");
+		name = request.getParameter("name");		
 		pw = request.getParameter("pw");
 		phone1 = request.getParameter("phone1");
 		phone2 = request.getParameter("phone2");
 		phone3 = request.getParameter("phone3");
 		gender = request.getParameter("gender");
-
+		
+		System.out.println(name);
+		
 		if (pwConfirm()) {
 			System.out.println("OK");
 			String query = "update member2 set name ='" + name + "', phone1= '" + phone1 + "', phone2 = '" + phone2
-					+ "', phone3 = '" + phone3 + "', gender = '" + gender + "' where name='"+name+"'";
-
+					+ "', phone3 = '" + phone3 + "', gender = '" + gender + "' where id='"+id+"'";
+			
+			System.out.println(id);
 			System.out.println(query);
 
 			try {
@@ -92,13 +96,13 @@ public class ModifyOk extends HttpServlet {
 
 				if (i == 1) {
 					System.out.println("update success");
-					httpSession.setAttribute("name", name);// 이름이 수정될수 있으므로
-					response.sendRedirect("modifyResult.jsp"); // 수정완료되었다는 페이지로 이동
+					httpSession.setAttribute("name", name);
+					response.sendRedirect("modifyResult.jsp");
 
 				} else {
 
 					System.out.println("update fail");
-					response.sendRedirect("modify.jsp");// id, pw가 일치하지 않으면 다시 수정페이지로 이동
+					response.sendRedirect("modify.jsp");
 
 				}
 
@@ -114,16 +118,16 @@ public class ModifyOk extends HttpServlet {
 				}
 			}
 		} else {
-			System.out.println("NG"); // id,pw가 일치하지 않으면 ng
+			System.out.println("NG");
 		}
 	}
 	private boolean pwConfirm() {
 		boolean rs = false;
-		String sessionPw =  (String)httpSession.getAttribute("pw"); // 사용자가 입력한 pw하고 db에 있는 pw가 일치하는지 확인	
+		String sessionPw =  (String)httpSession.getAttribute("pw"); 	
 		if(sessionPw.equals(pw)) {
-			rs = true;  ///id, pw가 일치하는지 확인한다. 맞으면 DB에서 업데이트해서 진행
+			rs = true; 
 		} else {
-			rs = false;// ng메세지를 발생한다. redirect해서 적당한 페이지로 보낸다.
+			rs = false;
 		}		
 		return rs;
 	}

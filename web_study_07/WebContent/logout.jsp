@@ -8,6 +8,7 @@
 </head>
 <body>
 	<%
+	
 	session.invalidate();
 	response.sendRedirect("join.jsp");
 	
