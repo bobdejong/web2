@@ -103,11 +103,14 @@ public class logInOk extends HttpServlet {
 				script.println("alert('패스워드가 틀렸습니다.');");
 				script.println("</script>");*/
 				
+				response.setContentType("text/html; charset=UTF-8");
+				//response.setCharacterEncoding("UTF-8"); 이건 안됨
 				
-		
 				PrintWriter out=response.getWriter();
-				response.setCharacterEncoding("UTF-8");
-				//out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
+				//response.setContentType("text/html; charset=UTF-8"); 안됨
+
+				//response.setCharacterEncoding("UTF-8"); 안됨
+				//out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />"); 안됨
 				out.println("<script> alert('password가 틀렸습니다.');</script>");
 				out.println("<script> location.href='login.html' </script>");
 				/*PrintWriter wr = response.getWriter();
