@@ -25,6 +25,9 @@ public class MemberDAO {  //Data Access Object
 	public ArrayList<MemberDTO> memberSelect(){
 		
 		ArrayList<MemberDTO> dtos=new ArrayList<MemberDTO>(); 
+		/*ArrayList<MemberDTO> dtos1=new ArrayList<MemberDTO>(); */
+		/*ArrayList<String> dto1=new ArrayList<String>(); 
+		dto1.add("배");*/
 		
 		Connection con=null;
 		Statement stmt=null;
@@ -47,6 +50,8 @@ public class MemberDAO {  //Data Access Object
 				//Data Transfer Object or value Object
 				MemberDTO dto=new MemberDTO(name,id,pw,phone1,phone2,phone3,gender);
 				dtos.add(dto);
+				/*MemberDTO dt=new MemberDTO(name,id,pw,phone1,phone2,phone3,gender);
+				dtos1.add(dto);*/
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -15,3 +15,7 @@ https://blog.naver.com/ghddid13/221121222032
 ModifyOk
 line 95 int i = stmt.executeUpdate(query);
 executeUpdate(쿼리문)메서드는 실행 후 성공한 레코드수를 반환한다
+
+
+------------로그인 처리(MVC 패턴)---------------------
+https://m.blog.naver.com/roropoly1/221004477596
