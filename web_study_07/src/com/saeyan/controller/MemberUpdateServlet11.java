@@ -6,17 +6,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+
+/*@WebServlet("/memberUpdate.do")*/
 
 import com.saeyan.dao.MemberDAO;
 import com.saeyan.dto.MemberVO;
+ 
+ 
 
-
-/**
- * Servlet implementation class MemberUpdateServlet
- */
-@WebServlet("/memberUpdate.do")
-public class MemberUpdateServlet extends HttpServlet {
+public class MemberUpdateServlet11 extends HttpServlet {
     
    // #49] main.jsp에서 회원 정보 수정하러 왔다.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,6 +53,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
     // 굳이 세션에 데이터가 있는 상태에서.. 굳이 request로 전달 할 필요없다.
     // 페이지 자체를 변경시키는 redirect로 가자!
     response.sendRedirect("login.do");
-}  
     
-}
+    
+}}
