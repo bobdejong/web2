@@ -18,4 +18,4 @@ executeUpdate(쿼리문)메서드는 실행 후 성공한 레코드수를 반환
 
 
 ------------로그인 처리(MVC 패턴)---------------------
-https://m.blog.naver.com/roropoly1/221004477596
+https://blog.naver.com/roropoly1/221004477596

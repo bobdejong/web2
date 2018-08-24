@@ -31,8 +31,11 @@ public class MemberDeleteServlet extends HttpServlet {
         dao.deleteMember(userid);
         HttpSession session = request.getSession();
         session.invalidate();
-        request.getRequestDispatcher("member/memberDelete.jsp").forward(request, response);
+        /*request.getRequestDispatcher("member/memberDelete.jsp").forward(request, response);*/
+        request.getRequestDispatcher("main.jsp").forward(request, response);
         
+        
+        System.out.println("멤버델리트 실행");
     }
  
 }
