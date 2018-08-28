@@ -30,9 +30,10 @@ public class EmployeesDAO {
 		            Context initContext = new InitialContext();
 		            Context envContext  = (Context)initContext.lookup("java:/comp/env");
 		                                                        // myoracle <-- context.xml
-		            DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+		           DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+		           /* DataSource ds = (DataSource)envContext.lookup("java:/comp/env/jdbc/myoracle");
 		            
-		            conn = ds.getConnection();
+		            conn = ds.getConnection();*/
 		            
 		        } catch(Exception e) {
 		            e.printStackTrace();

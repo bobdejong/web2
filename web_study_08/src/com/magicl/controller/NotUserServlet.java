@@ -1,4 +1,4 @@
-package com.magic.controller;
+package com.magicl.controller;
 
 import java.io.IOException;
 
@@ -8,19 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class NotUserServlet
  */
-@WebServlet("/logout.do")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/notuser.do")
+public class NotUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public NotUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +30,9 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session =request.getSession();
-		session.invalidate();
-		RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+		String name=request.getParameter("custom");
+		System.out.println(name);
+		RequestDispatcher rd=request.getRequestDispatcher("notuser.jsp");
 		rd.forward(request, response);
 	
 	}

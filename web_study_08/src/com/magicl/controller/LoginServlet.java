@@ -1,4 +1,4 @@
-package com.magic.controller;
+package com.magicl.controller;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		/*RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
 		rd.forward(request, response);*/
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 		
 		request.setCharacterEncoding("UTF-8");
 		
