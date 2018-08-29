@@ -61,7 +61,7 @@ public class MypageServlet extends HttpServlet {
 		EmployeesVO member=new EmployeesVO();
 	
 		member.setId(request.getParameter("id"));
-		member.setPass(request.getParameter("pass"));
+		member.setPass(request.getParameter("pwd"));
 		member.setName(request.getParameter("name"));
 		member.setLev(request.getParameter("lev"));
 		

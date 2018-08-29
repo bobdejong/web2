@@ -64,7 +64,7 @@ public class CustomJoinServlet extends HttpServlet {
 		member.setId(request.getParameter("id"));
 		member.setName(request.getParameter("name"));
 		member.setLev(request.getParameter("lev"));
-		member.setPass(request.getParameter("pass"));
+		member.setPass(request.getParameter("pwd"));
 		member.setPhone(request.getParameter("phone"));
 		member.setGender(Integer.parseInt(request.getParameter("gender")));
 		

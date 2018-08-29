@@ -49,6 +49,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		System.out.println("로그인");
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -68,6 +69,9 @@ public class LoginServlet extends HttpServlet {
 	           EmployeesVO emp =new EmployeesVO();
 	           emp =empDAO.getMember(id);
 	           
+	         
+	          /* System.out.println(emp.getId());*/
+	           
 	           HttpSession session = request.getSession();
 	           
 	           session.setAttribute("loginUser", emp);
@@ -85,6 +89,8 @@ public class LoginServlet extends HttpServlet {
 	       
 		
 	}
-	        	request.getRequestDispatcher("url").forward(request, response);	
+	       
+	       
+	        	request.getRequestDispatcher(url).forward(request, response);	
 	}
 }

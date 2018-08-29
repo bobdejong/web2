@@ -22,7 +22,7 @@ public class EmployeesDAO {
 			return instance;
 		}
 	
-		  public Connection getConnection(){
+		/* public Connection getConnection(){
 		        // 블럭 후 alt+shift+z 후 try block
 		        Connection conn = null;
 		        
@@ -31,9 +31,28 @@ public class EmployeesDAO {
 		            Context envContext  = (Context)initContext.lookup("java:/comp/env");
 		                                                        // myoracle <-- context.xml
 		           DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
-		           /* DataSource ds = (DataSource)envContext.lookup("java:/comp/env/jdbc/myoracle");
+		            DataSource ds = (DataSource)envContext.lookup("java:/comp/env/jdbc/myoracle");
 		            
-		            conn = ds.getConnection();*/
+		            conn = ds.getConnection();
+		            
+		        } catch(Exception e) {
+		            e.printStackTrace();
+		        }
+		        
+		        return conn;
+		    }*/
+		  
+		  public Connection getConnection(){
+		        // 블럭 후 alt+shift+z 후 try block
+		        Connection conn = null;
+		        
+		        try {
+		            Context initContext = new InitialContext();
+		            Context envContext  = (Context)initContext.lookup("java:/comp/env");
+		                                                        // myoracle <-- context.xml
+		            DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+		            
+		            conn = ds.getConnection();
 		            
 		        } catch(Exception e) {
 		            e.printStackTrace();
@@ -45,21 +64,32 @@ public class EmployeesDAO {
 		  public int userCheck(String userid, String pwd, String lev) {
 			  int result=1;
 			  Connection conn=null;
+			  System.out.println();
+			  
 			  String sql="select * from employees where id=?";
 			  PreparedStatement pstmt=null;
 			  ResultSet rs=null;
 			  
 			  
-			  try{
+			  
+			 try{
 		            conn = getConnection(); // 오라클 11, localhost에 xe, scott1400 tiger가 연결되어있음
 		            pstmt = conn.prepareStatement(sql);
 		            pstmt.setString(1, userid);
 		            
+		            System.out.println("db접속");
 		            rs = pstmt.executeQuery();
 		            if(rs.next()){
 		                if(rs.getString("pass").equals(pwd)){                    
-		                    if(lev.equals(rs.getString("lev"))) {
-		                	result = 2; //관리자로 로그인
+		                    System.out.println(pwd);
+		                    System.out.println(rs.getString("pass"));
+		                	
+		                	if(lev.equals(rs.getString("lev"))) {
+		                    	if(lev.equals("A")) {
+		                    		result = 2; //관리자로 로그인
+			                	}
+		                    	
+		                    	result = 2; //관리자로 로그인
 		                	if(lev.equals("B")) {
 		                		result =3; //일반회원으로 로그인
 		                	}
@@ -74,6 +104,7 @@ public class EmployeesDAO {
 		            	
 		            	result=-1;
 		            }
+		
 		            
 		            
 		        }catch(Exception e){
@@ -89,6 +120,8 @@ public class EmployeesDAO {
 		            }
 		        }
 		        
+			  System.out.println(result);
+			  
 		        // #10] LoginServlet의 doPost로 가자!
 		        return result;    // 1, 0, -1
 			  
@@ -100,12 +133,13 @@ public class EmployeesDAO {
 		  public EmployeesVO getMember(String id) {
 			  EmployeesVO member = null;
 		        
-		        String sql="select * from member where id=?";
+		        String sql="select * from employees where id=?";
 		        Connection conn = null;
 		        // 바인딩 변수가 있으면 preparedStatement, 없으면 Statement
 		        PreparedStatement pstmt = null;
 		        // 아이디와 비번이 있는지 없는지 조회를 해가지고 와! resultSet
 		        ResultSet rs = null;
+		       
 		        
 		        
 		        try{
@@ -137,8 +171,8 @@ public class EmployeesDAO {
 		            }catch(Exception e){
 		                e.printStackTrace();
 		            }
-		        }
 		        
+		        }
 		        
 		        return member;
 		    }
@@ -158,8 +192,11 @@ public class EmployeesDAO {
 		            pstmt.setInt(5, member.getGender());
 		            pstmt.setString(6, member.getPhone());
 		            
-		           System.out.println(pstmt.executeUpdate());
-		            
+		            /*pstmt.executeUpdate();*/
+		           
+		           
+		         System.out.println(pstmt.executeUpdate());
+		           
 		        }catch(Exception e){
 		            
 		            e.printStackTrace();
@@ -191,7 +228,7 @@ public class EmployeesDAO {
 		            pstmt.setString(3, evo.getName());
 		            pstmt.setString(4, evo.getLev());
 		            pstmt.setString(5, evo.getPhone());
-		            pstmt.setString(5, evo.getId());
+		            pstmt.setString(6, evo.getId());
 		 
 		            result = pstmt.executeUpdate();
 		            
