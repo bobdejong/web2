@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="tbody m-tcol-c" id="tbody">
+					
+					
+					
+					
+					
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+						
+						<p><strong><span style="FONT-SIZE: 18pt">MultipartRequest </span></strong></p><p>이 클래스는 cos.jar 에 있고, 파일 업로드를 담당하는 클래스 이다.</p><p>이 클래스는 <a target="_blank" href="http://www.servlets.com/">www.servlets.com</a> 에서 받을 수 있다.</p><p>&nbsp;</p><p><strong><span style="FONT-SIZE: 18pt">MultipartRequest 의 생성자</span></strong></p><p>MultipartRequest(</p><p>&nbsp;&nbsp; javax.servlet.http.HttpServletRequest request,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이 클래스와 연결할 request 객체</p><p>&nbsp;&nbsp; java.lang.String saveDirectory,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 서버 측에 저장될 경로 </p><p>&nbsp;&nbsp; int maxPostSize,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 최대 파일 크기</p><p>&nbsp;&nbsp; java.lang.String encoding,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 파일의 인코딩 방식 (euc-kr, utf-8 등..)</p><p>&nbsp;&nbsp; FileRenamePolicy policy)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 파일 중복 처리를 위한 클래스</p><p>&nbsp;</p><p>&nbsp;&nbsp; FileRenamePolicy policy 이 인자는 인터페이스로 기본 new DefaultFileRenamePolicy() 를 사용한다.</p><p>&nbsp;&nbsp; 하지만 사용자 입맛에 맞게 FileRenamePolicy 를 구현받아 파일 중복처리를 만들 수 있다.</p><p>&nbsp;</p><p><strong><span style="FONT-SIZE: 18pt">MultipartRequest 의 메소드</span></strong></p><p>MultipartRequest multi = </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new MultipartRequest(request, "D://stone", 4*1024*1024, "euc-kr", new DefaultFileRenamePolicy());</p><p>4*1024*1024는 4MB를 의미</p><p>&nbsp;</p><p>multi.getParameterNames()</p><p>&nbsp;&nbsp; - 폼에서 전송된 파라미터의 이름을 Enumeration 타입으로 리턴</p><p>multi.getParameterValues()</p><p>&nbsp;&nbsp; - 폼에서 전송된 파라미터들을 배열로 받아온다.</p><p>multi.getParameter()</p><p>&nbsp;&nbsp; - request 객체에 저장된 파라미터의 값을 얻어 온다.</p><p>multi.getFileNames()</p><p>&nbsp;&nbsp; - 파일을 여러개 업로드된 파일의 이름을 의미한다.</p><p>multi.getFilesystemName()</p><p>&nbsp;&nbsp; - 서버에 실제로 업로드된 파일의 이름을 의미한다.</p><p>multi.getOriginalFileName()</p><p>&nbsp;&nbsp; - 클라이언트가 업로드한 파일의 원본 이름을 의미한다.</p><p>multi.ContentType()</p><p>&nbsp;&nbsp; - 업로드된 파일의 컨텐트 타입을 얻을 때 사용한다.</p><p>multi.getFile()</p><p>&nbsp;&nbsp; - 서버에 업로드된 파일의 정보를 File 객체로 얻어 낸다.</p><p>&nbsp;</p><p><strong><span style="FONT-SIZE: 18pt">참고</span></strong></p><p>&nbsp;&nbsp; 폼에서 서브밋된 파라미터값을 접근할때 request.getParameter 로 접근하였으나</p><p>&nbsp;&nbsp; enctype="multipart/form-data"로 선언 후 서브밋된 파라미터를 접근할 때 request.getParameter로 접근하면 값을 얻어 올 수</p><p>&nbsp;&nbsp; 없다. 위와 같이 MultipartRequest를 통해 위의 메소드로 접근해서 가져와야 한다.</p><p>&nbsp;&nbsp; 또한 생성자에서 마지막 인자인 policy 를 생략하면 중복된 파일이 있을 시 덮어쓰기가 된다.</p>
+					
+					
+					
+					
+					
+					
+				</div>
+</body>
+</html>
