@@ -21,7 +21,7 @@ table th { /*테이블의 th 속성*/
 	border : #d3d3d3 solid 1px; /*경계선 색상 스타일 굵기*/
 	padding : 5px;	/*안쪽 여백*/
 	color : white;
-	background : blue;
+	background : #ABF200;
 }
 table td{ /*테이블의 td 속성*/
 	border : #d3d3d3 solid 1px; /*경계선 색상 스타일 굵기*/

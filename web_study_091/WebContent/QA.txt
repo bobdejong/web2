@@ -106,7 +106,9 @@ multi.getFile()
    				
    https://github.com/zacscoding/basic_learn_notes/tree/master/jsp_basic/web-study-10/src/com/faceonshop/controller
  
+   시퀀스
    
+   https://blog.naver.com/yysvip/220102107169
    
    
    

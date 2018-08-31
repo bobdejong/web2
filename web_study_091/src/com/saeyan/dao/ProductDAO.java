@@ -39,7 +39,7 @@ public class ProductDAO {
 				while(rs.next()) {
 					list.add(convertProduct(rs));
 					
-					/*Product pVo=new ProductVO()
+					/*ProductVO pVo=new ProductVO()
 					
 					pVo.setCode(rs.getInt("code"));
 					pVo.setName(rs.getString("name"));
@@ -47,8 +47,7 @@ public class ProductDAO {
 					pVo.setDescription(rs.getString("description"));
 					pVo.setPictureUrl(rs.getString("pictureUrl"));
 					  
-					  
-					  */
+					list.add(pVo);  */
 					
 					
 				}
@@ -113,6 +112,13 @@ public class ProductDAO {
 		///////////////
 		// 상품 변경
 		///////////////
+		
+		
+		
+		
+		
+		
+		
 		public void updateProduct(ProductVO product) {
 			String sql = "update product set name=?,price=?,pictureUrl=?,description=? where code=?";
 			Connection conn = null;
@@ -133,6 +139,10 @@ public class ProductDAO {
 				DBManager.close(conn,pstmt);
 			}	
 		}
+		
+		
+		
+		
 		
 		///////////////
 		//상품 삭제
