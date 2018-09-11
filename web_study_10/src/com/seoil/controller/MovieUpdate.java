@@ -3,6 +3,7 @@ package com.seoil.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,8 +38,11 @@ public class MovieUpdate extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("EUC-KR");
 		
-		String saveDirectory = request.getServletContext()
-				.getRealPath("images");
+		ServletContext context = getServletContext();
+		String saveDirectory = context.getRealPath("images");
+		
+		/*String saveDirectory = request.getServletContext()
+				.getRealPath("images");*/
 		int maxPostSize = 5*1024*1024; //5KB
 		String encType="EUC-KR";
 		DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();

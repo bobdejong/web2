@@ -10,7 +10,7 @@
 <body>
 <div id="wrap" align="center">
 <h1>정보 수정</h1>
-<form enctype="multipart/form-data" method="post" action=>
+<form enctype="multipart/form-data" method="post" action="movieupdate.do">
 <input type="hidden" name="code" value="${movie.code }">
 <input type="hidden" name="nonmakeImg" value="${movie.poster }">
   <table>
