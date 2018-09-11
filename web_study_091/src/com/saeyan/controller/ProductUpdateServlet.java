@@ -54,7 +54,7 @@ request.setCharacterEncoding("utf-8");
 		
 		MultipartRequest multi = new MultipartRequest(request,path,sizeLimit,encType,new DefaultFileRenamePolicy());
 		
-		String pictureUrl = multi.getParameter("pictureUrl");
+		String pictureUrl = multi.getFilesystemName("pictureUrl");
 		if(pictureUrl==null)
 			pictureUrl = multi.getParameter("nonmakeImg");
 		
